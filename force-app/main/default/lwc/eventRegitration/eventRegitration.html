@@ -1,0 +1,29 @@
+<template>
+    <lightning-card title="Event Registration" icon-name="custom:custom63">
+        <template if:true={events}>
+            <template for:each={events} for:item="event">
+                <lightning-card key={event.Id} title={event.Name}>
+                    <p>Date: {event.Date__c}</p>
+                    <p>Location: {event.Location__c}</p>
+                    <lightning-input label="Your Name" value={participantName} onchange={handleNameChange}></lightning-input>
+                    <lightning-input label="Your Email" value={email} onchange={handleEmailChange}></lightning-input>
+                    <lightning-button variant="brand" label="Register" onclick={register}></lightning-button>
+                </lightning-card>
+            </template>
+        </template>
+        <template if:true={error}>
+            <div class="slds-notify slds-notify_alert slds-theme_error">
+                <span class="slds-icon_container slds-icon-utility-error" title="Error">
+                    <lightning-icon icon-name="utility:error" alternative-text="Error" size="small"></lightning-icon>
+                </span>
+                <div class="slds-grid slds-grid_align-spread">
+                    <div class="slds-col slds-size_1-of-1">
+                        <ul>
+                            <li>{error}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </template>
+    </lightning-card>
+</template>
